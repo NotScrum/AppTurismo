@@ -12,6 +12,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Pueblito paisa')),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal:8 , vertical:16),
         child: Center(
@@ -41,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 16,
                 ),
-                const Text('El Pueblito Paisa tiene esculturas de corte modernista y abstracto. Entre ellas estan la escultura del Cacique Nutibara y su compañera la Cacica Nutabe y un puma bajo su pie, como símbolo de poder. Fue construída en 1995 por el maestro José Herrera Betancur. La escultura mide 3 m de altura por 2.90 m de ancho y pesa 4 toneladas aprox, y un monumento a un personaje importante, el escritor antioqueño Tomas Carrasquilla.'),
+                const Text('El Pueblito Paisa tiene esculturas de corte modernista y abstracto. Entre ellas estan la escultura del Cacique Nutibara y su compañera la Cacica Nutabe y un puma bajo su pie, como símbolo de poder. Fue construída en 1995 por el maestro José Horacio Betancur. La escultura mide 3 m de altura por 2.90 m de ancho y pesa 4 toneladas aprox, y un monumento a un personaje importante, el escritor antioqueño Tomas Carrasquilla.'),
               ],
 
             ),
