@@ -2,9 +2,12 @@ import 'dart:convert';
 import 'package:mislibros/models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:mislibros/pages/home_page.dart';
+import 'package:mislibros/pages/my_sites_page.dart';
 import 'package:mislibros/pages/register_page.dart';
+import 'package:mislibros/repository/firebase_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
+
+
 
 class  LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,36 +18,64 @@ class  LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  final _email =TextEditingController();
-  final _password =TextEditingController();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
 
   User userLoad = User.Empty();
 
-  getUser() async{
+  final FirebaseApi _firebaseApi = FirebaseApi();
+
+  getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map<String, dynamic> userMap = jsonDecode(prefs.getString("user")!);
     userLoad = User.fromJson(userMap);
   }
 
-  void_validateUser(){
-    if(_email.text == userLoad.email && _password.text == userLoad.password){
+  void _showMsg(String msg) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        action: SnackBarAction(
+            label: 'Aceptar', onPressed: scaffold.hideCurrentSnackBar),
+      ),
+    );
+  }
+
+
+  void_validateUser() async {
+    if (_email.text.isEmpty || _password.text.isEmpty) {
+      _showMsg("Debe digitar el correo y la contraseña");
+    } else {
+      var result = await _firebaseApi.logInuser(_email.text, _password.text);
+      String msg = "";
+      if (result == "invalid-email") {
+        msg = "El correo electrónico está mal escrito";
+      } else if (result == "wrong-password") {
+        msg = "Correo o contraseña invalido";
+      } else if (result == "network-request-failed") {
+        msg = "Revise su conexión a internet";
+      } else
+        msg = "Bienvenido";
+      _showMsg(msg);
+
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) =>const HomePage()));
-    }else{
-      final scaffold = ScaffoldMessenger.of(context);
-      scaffold.showSnackBar(
-          SnackBar(
-              content: const Text("Correo o contraseña incorrecta"),
-            action: SnackBarAction(
-              label: 'Aceptar', onPressed: scaffold.hideCurrentSnackBar),
-            )
-          );
+          MaterialPageRoute(builder: (context) => const MySitesPage()));
+      //final scaffold = ScaffoldMessenger.of(context);
+      // scaffold.showSnackBar(
+      //    SnackBar(
+      //       content: const Text("Correo o contraseña incorrecta"),
+      //     action: SnackBarAction(
+      //       label: 'Aceptar', onPressed: scaffold.hideCurrentSnackBar),
+      //     )
+      //   );
     }
   }
 
+
   @override
   void initState(){
-    getUser();
+   // getUser();
     super.initState();
   }
 

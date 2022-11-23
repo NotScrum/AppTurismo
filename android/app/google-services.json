@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "755947794145",
+    "project_id": "turismosprint3",
+    "storage_bucket": "turismosprint3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755947794145:android:a890d4ff50f0f69fd251a0",
+        "android_client_info": {
+          "package_name": "com.example.mislibros"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755947794145-li2f6cogtu0vfkdneuam6t86e0f8it11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUr1QCj3izRDxY6BUxC_fGmABJ94ZnRAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755947794145-li2f6cogtu0vfkdneuam6t86e0f8it11.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "755947794145-1oad6uec3plb9nql0r2v2fmb3ckhc72r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mislibros"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
